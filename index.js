@@ -149,14 +149,14 @@ function search(options, callback){
         var links = this.evaluate(function getLinks() {
           var links = document.querySelectorAll('.g h3 a');
           return Array.prototype.map.call(links, function(e) {
-              return e.getAttribute('href');
+              return { url: e.getAttribute('href'), title: e.textContent }
           });
         });
         if(this.exists('#RVQdVd')){
           links = this.evaluate(function getLinks(sharedContext) {
             var links = document.querySelectorAll( ((sharedContext.pageCount === 0) ? '#ires' : ('#arc-srp' + sharedContext.pageCount*10)) + ' a.C8nzq' );
             return Array.prototype.map.call(links, function(e) {
-              return e.getAttribute('href');
+              return { url: e.getAttribute('href'), title: e.textContent }
             });
           }, sharedContext);
         }
